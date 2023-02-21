@@ -10,16 +10,15 @@ def compute_height(n, parents):
     # Your code here
     for i in range(n):
         j = i
-        curr = 1
+        depth = 1
         while(parents[j]!=-1):
-            curr = curr+1
+            depth = depth+1
             j = parents[j]
-        height = curr
-        if curr>height:
-            max_heigth=curr
-        else:
-            max_height=height
-    return max_height + 1
+        if max_height <= depth:
+            max_height = depth
+        else: max_height = max_height
+
+    return max_height
     pass
 
 def main():
@@ -34,13 +33,12 @@ def main():
     if 'F' in txt:
         path = input()
         if '.a' not in path:
+            path = "test/"+path
             with open(path,'r') as file:
                 nodes = int(file.readline())
                 data = file.read()
                 parents = map(int,data.split())
                 parents = list(parents)
-                print(nodes)
-                print(parents)
                 print(compute_height(nodes,parents))
         else:
              pass        
