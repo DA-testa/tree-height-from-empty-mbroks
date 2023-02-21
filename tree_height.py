@@ -2,7 +2,7 @@
 
 import sys
 import threading
-import numpy as np
+#import numpy as np
 
 def compute_height(n, parents):
     # Write this function
@@ -29,7 +29,7 @@ def main():
         nodes = int(input())
         arr = input()
         parents = map(int,arr.split())
-        parents = np.array(list(parents))
+        parents = list(parents)
         print(compute_height(nodes, parents))
     if 'F' in txt:
         path = input()
@@ -38,7 +38,7 @@ def main():
                 nodes = int(file.readline())
                 data = file.read()
                 parents = map(int,data.split())
-                parents = np.array(list(parents))
+                parents = list(parents)
                 print(nodes)
                 print(parents)
                 print(compute_height(nodes,parents))
