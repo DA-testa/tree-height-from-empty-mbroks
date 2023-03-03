@@ -3,7 +3,7 @@
 import sys
 import threading
 import numpy as np
-
+#a
 
 def check(j, parents, height):
    
