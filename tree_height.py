@@ -2,24 +2,31 @@
 
 import sys
 import threading
-#import numpy as np
+import numpy as np
+
+
+def check(j, parents, height):
+   
+   #check tree root
+    if (parents[j] == -1):
+        return 1
+ 
+    elif (height[j] != -1):
+        return height[j]
+    
+    height[j] = check(parents[j], parents, height) + 1
+    return height[j]
+ 
 
 def compute_height(n, parents):
-    # Write this function
     max_height = 0
-    # Your code here
-    for i in range(n):
-        j = i
-        depth = 1
-        while(parents[j]!=-1):
-            depth = depth+1
-            j = parents[j]
-        if max_height <= depth:
-            max_height = depth
-        else: max_height = max_height
+    #height_l = np.empty(n)
+    height_l = np.array([-1]*(n))
+ 
+    for j in range(n):
+        max_height = max(max_height, check(j, parents, height_l))
 
     return max_height
-    pass
 
 def main():
     # implement input form keyboard and from files
@@ -28,7 +35,7 @@ def main():
         nodes = int(input())
         arr = input()
         parents = map(int,arr.split())
-        parents = list(parents)
+        parents = np.array(list(parents))
         print(compute_height(nodes, parents))
     if 'F' in txt:
         path = input()
@@ -38,7 +45,7 @@ def main():
                 nodes = int(file.readline())
                 data = file.read()
                 parents = map(int,data.split())
-                parents = list(parents)
+                parents = np.array(list(parents))
                 print(compute_height(nodes,parents))
         else:
              pass        
